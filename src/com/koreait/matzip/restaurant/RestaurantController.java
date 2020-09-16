@@ -80,6 +80,7 @@ public class RestaurantController {
 		
 		request.setAttribute("css", new String[]{"restaurant"});
 		request.setAttribute("recommendMenuList", service.getRecommendMenuList(i_rest));
+		request.setAttribute("menuList", service.getMenuList(i_rest));
 		request.setAttribute("data", service.getRest(param));
 		
 		request.setAttribute(Const.TITLE, "가게 정보");
@@ -89,6 +90,10 @@ public class RestaurantController {
 	
 	public String addRecMenusProc(HttpServletRequest request) {
 		int i_rest = service.addRecMenus(request);
+		return "redirect:/restaurant/restDetail?i_rest=" + i_rest;
+	}
+	public String addMenusProc(HttpServletRequest request) {
+		int i_rest = service.addMenus(request);
 		return "redirect:/restaurant/restDetail?i_rest=" + i_rest;
 	}
 	

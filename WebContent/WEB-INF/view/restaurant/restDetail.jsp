@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <div>
 	<div id="sectionContainerCenter">
 		<div>
@@ -10,7 +12,7 @@
 					<button onclick="isDel()">삭제</button>
 					<form id="recFrm" action="/restaurant/addRecMenusProc" enctype="multipart/form-data" method="post">
 					<!-- 파일넣을때 enctype가 필요 -->
-						<div><button type="button" onclick="addRecMenu()">메뉴 추가</button></div>
+						<div><button type="button" onclick="addRecMenu()">추천메뉴 추가</button></div>
 						<input type="hidden" name="i_rest" value="${data.i_rest}">
 						<div id="recItem">
 						</div>
@@ -19,11 +21,11 @@
 				</div>
 				<h2>- 메뉴 -</h2>
 				<div>
-					<div><button type="button" onclick="addMenu()">메뉴추가</button></div>
-					<form id="menuFrm" action="/restaurant/addMenusProc"enctype="multipart/form-data"></form>
+					<form id="menuFrm" action="/restaurant/addMenusProc"enctype="multipart/form-data"  method="post">
 						<input type="hidden" name="i_rest" value="${data.i_rest}">
 						<input type="file" name="menu_pic" multiple>
 						<div><input type="submit" value="등록"></div>
+					</form>	
 				</div>
 			</c:if>
 			<div class="recMenuContainer">
@@ -70,6 +72,27 @@
 								<th>카테고리</th>
 								<td>${data.cd_category_nm}</td>
 							</tr>
+							<tr>
+								<th>메뉴</th>
+								<td>
+									<div class="menuList">
+										<c:if test="${fn:length(menuList) >0 }">
+										<c:forEach var="i" begin="0" end="${fn:length(menuList) > 3 ? 2 : fn:length(menuList) - 1}">
+											<div class="menuItem">
+												<img src="/res/img/restaurant/${data.i_rest}/menu/${menuList[i].menu_pic}">
+											</div>
+										</c:forEach>
+										</c:if>
+										<c:if test="${fn:length(menuList) > 3}">
+											<div class="menuItem bg_black">
+												<div class="moreCnt">
+													+${fn:length(menuList) - 3}
+												</div>
+											</div>
+										</c:if>
+									</div>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -100,24 +123,24 @@
 	var idx = 0;
 	function addRecMenu() {
 		var div = document.createElement('div')
-			
+		
 		var inputNm = document.createElement('input')
-		inputNm.setAttribute("type", "text")
-		inputNm.setAttribute('name', 'menu_nm')			
+		inputNm.setAttribute('type', 'text')
+		inputNm.setAttribute('name', 'menu_nm')
 		var inputPrice = document.createElement('input')
-		inputPrice.setAttribute("type", "number")
+		inputPrice.setAttribute('type', 'number')
 		inputPrice.setAttribute('name', 'menu_price')
 		var inputPic = document.createElement('input')
-		inputPic.setAttribute("type", "file")
-		inputPic.setAttribute('name', 'menu_pic_'+idx++)
-			
-		div.append(' menu : ')
+		inputPic.setAttribute('type', 'file')
+		inputPic.setAttribute('name', 'menu_pic_' + idx++)
+		
+		div.append('메뉴: ')
 		div.append(inputNm)
-		div.append(' price : ')
+		div.append(' 가격: ')
 		div.append(inputPrice)
-		div.append(' photo : ')
+		div.append(' 사진: ')
 		div.append(inputPic)
-			
+		
 		recItem.append(div)
 	}
 	addRecMenu()
