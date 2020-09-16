@@ -106,6 +106,8 @@ public class RestaurantController {
 		File file = new File(savePath); // 파일 관련 작업할때 
 		
 		//파일에 있는 이미지까지 삭제 
+		
+		//test
 		if(file.exists()) { //exists 경로지정했을때 파일 존재 여부
 			if(file.delete()) {
 				System.out.println("삭제성공");
