@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'UhBeepuding';
+	src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+	font-size: 20px;
+}    
+
+html, body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-family: 'UhBeepuding';
+}
+
+#container {
+	display:flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+#container > header {
+	display: flex;
+	padding: 10px;
+	height: 70px;
+	background-color: #FFDAB9;
+}
+
+#container > header > #headerLeft {
+	flex-grow:1;
+	display: flex;
+	align-items: center;
+}
+
+#container > header > #headerRight {
+	padding-right:50px;
+	flex-grow:1;
+	display:flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#container > header > #headerRight > a {
+	font-weight:bold;
+	font-size:0.8em;
+	text-decoration: none;
+}
+.ml15 {
+	margin-left: 15px;
+	color: white;
+	font-size: 12px;
+}
+.ml15:hover {
+	color: 	#F4A460;
+}
+
+.ml15::after {
+	content: "";
+	border: 1px solid white;
+}
+
+#container > section {
+	flex-grow: 1;
+}
+
+#container > footer {
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-item: center;
+	height: 50px;
+	background-color: #636e72;
+	color: white;
+}
+
+#sectionContainerCenter {
+	width: 100%;
+	height: 100%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#headerLogout > a {
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+.containerPImg {
+	display: inline-block;	
+	width: 30px;
+	height: 30px;
+	border-radius: 10%;
+	overflow: hidden;
+}
+		
+.pImg {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
+.nm {
+	font-weight: bold;
+	margin-left: 5px;
+}	
+
+.frm {
+	padding: 15px;
+	border-radius: 20%;
+	background-color:#FFDAB9;
+	font-family: 'Dovemayo-Medium';
+	
+}
+.borderNone > input {
+	border: none;
+	background-color: #FFDAB9;
+	color: black;
+	font-family: 'UhBeepuding';
+	font-weight: bold;
+	margin-top: 10px;
+}
+.msg {
+	color: red;
+}
+
+#aJoin > a {
+	text-decoration: none;
+	font-size: 20px;
+	color: black;
+	position: relative;
+	bottom: 37px;
+	left: 60px;
+}
+
+.logtout_a > a {
+	text-decoration: none;
+	margin-left: 10px;
+	border-radius: 10%;
+	color: white;
+	font-size: 20px;
+	
+}
+.logtout_a > a:hover {
+	color: 	#F4A460;
+}
+.label {
+	color: 	#F4A460;
+	font-weight: bold;
+}
+
