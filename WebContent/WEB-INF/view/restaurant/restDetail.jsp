@@ -17,6 +17,14 @@
 						<div><input type="submit" value="등록"></div>
 					</form>
 				</div>
+				<h2>- 메뉴 -</h2>
+				<div>
+					<div><button type="button" onclick="addMenu()">메뉴추가</button></div>
+					<form id="menuFrm" action="/restaurant/addMenusProc"enctype="multipart/form-data"></form>
+						<input type="hidden" name="i_rest" value="${data.i_rest}">
+						<input type="file" name="menu_pic" multiple>
+						<div><input type="submit" value="등록"></div>
+				</div>
 			</c:if>
 			<div class="recMenuContainer">
 				<c:forEach items="${recommendMenuList}" var="item">
@@ -71,14 +79,15 @@
 </div>
 <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	function delRecMenu(i_rest, seq, fileNm) {
+	function delRecMenu(i_rest,seq, fileNm) {
 		console.log('i_rest : ' + i_rest)
 		console.log('seq : ' + seq)
 		console.log('fileNm : ' + fileNm)
 		
 		axios.get('/restaurant/ajaxDelRecMenu', {
 			params: {
-				i_rest, seq, fileNm
+				i_rest: i_rest, /* el식은 고정값*/
+				seq, fileNm
 			}
 		}).then(function(res) {
 			if(res.data == 1) {

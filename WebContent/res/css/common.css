@@ -63,10 +63,6 @@ html, body {
 	color: 	#F4A460;
 }
 
-.ml15::after {
-	content: "";
-	border: 1px solid white;
-}
 
 #container > section {
 	flex-grow: 1;

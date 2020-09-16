@@ -17,7 +17,7 @@ import com.koreait.matzip.vo.RestaurantRecommendMenuVO;
 import com.koreait.matzip.vo.RestaurantVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage;
+//import com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage;
 
 
 public class RestaurantController {
@@ -96,25 +96,24 @@ public class RestaurantController {
 		int i_rest = CommonUtils.getIntParameter("i_rest", request);
 		int seq = CommonUtils.getIntParameter("seq", request);
 		String fileNm = request.getParameter("fileNm");
+		int i_user = SecurityUtils.getLoginUserPk(request);
 		
 		RestaurantRecommendMenuVO param = new RestaurantRecommendMenuVO();
 		param.setI_rest(i_rest);
 		param.setSeq(seq);
+		param.setI_user(i_user);
 		
 		int result = service.delRecMenu(param);
 		String savePath = request.getServletContext().getRealPath("/res/img/restaurant/"+ i_rest + "/" + fileNm);
 		File file = new File(savePath); // 파일 관련 작업할때 
 		
 		//파일에 있는 이미지까지 삭제 
-		
-		//test
 		if(file.exists()) { //exists 경로지정했을때 파일 존재 여부
 			if(file.delete()) {
 				System.out.println("삭제성공");
 			} else {
 				System.out.println("삭제실패");
 			}
-			///...
 		} else {
 			System.out.println("파일존재 x");
 		}
